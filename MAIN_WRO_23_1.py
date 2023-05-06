@@ -236,25 +236,27 @@ def barcaPiccola():
   wait(100)
 
   # arco per prendere barca
-  robot.arc(radius=93, angle=180, speed=100 )  # radius era 95
+  robot.curve(radius=93, angle=-180)
+  #robot.arc(radius=93, angle=180, speed=100 )  # radius era 95
   
   robot.straightGyroForDistance(600, maxSpeed=200, absoluteHeading=True)
 
   robot.straightUntilLine(maxSpeed=150)
   
-  #robot.headTo(-45)
-  robot.headTo2(angle = 45, speedMax=90)
+  robot.headTo(-45)# TODO debug
 
   robot.straight(150)
   robot.straightUntilLine(maxSpeed=150)
   robot.straight(140)
   
-  robot.arc(angle=-45,radius=-WHEEL_DIST/2,speed=90)
+  robot.curve(angle=45 radius=WHEEL_DIST/2)
+  #robot.arc(angle=-45,radius=-WHEEL_DIST/2,speed=90)
 
   robot.lineFollowerSettings(basePower=50, target=40, gain=0.1,darkThreshold=10,whichSensor=Side.LEFT,whichBorder=Side.RIGHT)
   robot.followLineForDistance(distance=300, basePower= 70, brake=False) 
   robot.followLineUntilIntersection(basePower=50)
-  robot.arc(radius=100, angle=90, speed=140)
+  #robot.arc(radius=100, angle=90, speed=140)
+  robot.curve(radius=100, angle=-90)
 
   robot.straight(20)
   # carica barca piccola
@@ -264,7 +266,7 @@ def barcaPiccola():
   robot.grabber.unloadBuffer()
   robot.grabber.retract(False)
 
-  robot.straight(230) # end of mission
+  robot.straight(230) # park, end of mission
 
 """
   __  __    _    ___ _   _ 
@@ -277,9 +279,9 @@ def barcaPiccola():
 # DATA: 05/05/2023
 # Dopo la vittoria con la versione MINDSTORMS EV3 PyBricks a Romecup, 
 # eseguito porting a SPIKE Prime
-# VERSIONE 1.0
+# VERSIONE 1.1
 
-# avoid to stop everything with a slight touch
+# avoid stopping everything with a slight touch of the CENTER button
 #robot.hub.system.set_stop_button(None) 
 
 order1 = Color.BLUE
